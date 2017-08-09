@@ -1,3 +1,7 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  resources :articles do
+    resources :article_versions, path: :versions, only: [:new, :edit, :update], as: :versions
+  end
+
 end

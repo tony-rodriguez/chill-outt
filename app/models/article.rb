@@ -1,5 +1,6 @@
 class Article < ApplicationRecord
-  has_many :article_versions
+  has_many :versions, class_name: ArticleVersion
+  accepts_nested_attributes_for :versions
 
-  validates_presence_of :title
+  validates_presence_of :title, :versions
 end

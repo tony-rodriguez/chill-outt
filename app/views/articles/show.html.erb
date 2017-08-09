@@ -1,0 +1,12 @@
+<h2><%= @article.title %></h2>
+
+<label>Versions</label>
+
+<div class="version-container">
+  <p class="version-content">
+    <%= @article.versions.each do |version| %>
+      <p class="version-content">
+        <%= version.content %>
+      </p>
+    <% end %>
+</div>
