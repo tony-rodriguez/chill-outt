@@ -1,0 +1,18 @@
+<h1>login</h1>
+
+<%= form_with(id: "login-user", url: '/sessions', local: true) do |f| %>
+  <ul>
+    <li><%= @error_message %></li>
+  </ul>
+  <p>
+    <%= f.label :username %>
+    <%= f.text_field :username %>
+  </p>
+  <p>
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
