@@ -11,6 +11,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params.merge(type: UserType.anything_but_admin))
     if @user.save
+      session[:user_id] == @user.id
       redirect_to @user
     else
       render 'new'
@@ -22,6 +23,7 @@ class UsersController < ApplicationController
     end
 
     def get_user
-      @user = User.find_by(id: params[:id])
+      authenticate!
+      @user = current_user
     end
 end
