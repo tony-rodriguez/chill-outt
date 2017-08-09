@@ -1,14 +1,13 @@
 require 'rails_helper'
 
-describe User do
+RSpec.describe User, :type => :model do
   let(:type) { UserType.create!(name: "pleb") }
   describe "has_secure_password" do
     let!(:user) { User.create!(username: "username", password: "password", type: type) }
 
     describe '#authenticate' do
       it "returns the user object if correct password is supplied" do
-        auth_user = user.authenticate("password")
-        expect(auth_user).to be user
+        expect(user.authenticate("password")).to be user
       end
 
       it "returns false if the incorrect password is supplied" do
