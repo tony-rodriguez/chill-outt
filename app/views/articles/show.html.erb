@@ -1,14 +1,21 @@
 <h2><%= @article.title %></h2>
 
-<h3>Versions</h3>
+<article class="article-content">
+  <p>
+  <%= @article.latest_version.content %>
+  </p>
+  <small>-Written by: <%= @article.latest_version.author.username %> on <%=  @article.latest_version.created_at.strftime('%c') %></small>
+</article>
 
+
+<% if @article.prior_versions.any? %>
 <div class="version-container">
-
-    <% @article.versions.each do |version| %>
-      <p class="version-content">
-        <%= version.content %><br />
-        <small>-Written by: <%= version.author.username %> on <%= version.created_at %></small>
-      </p>
+  <h5>Previous Versions</h5>
+  <ul>
+    <% @article.prior_versions.each do |version| %>
+       <li><small>Version by: <%= version.author.username %> written on <%= version.created_at.strftime('%c')  %></small>
+      </li>
     <% end %>
-
+  </ul>
 </div>
+<% end %>
