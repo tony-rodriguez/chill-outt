@@ -15,3 +15,4 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 
 # CKEditor
 Rails.application.config.assets.precompile += %w( ckeditor/*)
+

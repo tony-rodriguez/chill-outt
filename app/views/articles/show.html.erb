@@ -2,9 +2,10 @@
 
 <article class="article-content">
   <p>
-  <%= @article.latest_version.content %>
+  <%= @article.latest_version.content.html_safe %>
   </p>
-  <small>-Written by: <%= @article.latest_version.author.username %> on <%=  @article.latest_version.created_at.strftime('%c') %></small>
+
+  <small>-Written by: <%= @article.latest_version.author.username %> on <%=  @article.latest_version.created_at.strftime('%c') %> | <%= link_to "Edit Recent Article", edit_article_version_path(@article.latest_version) %></small>
 </article>
 
 
