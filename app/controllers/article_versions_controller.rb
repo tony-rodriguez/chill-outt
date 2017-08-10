@@ -28,7 +28,6 @@ class ArticleVersionsController < ApplicationController
   end
 
   private
-
   def set_version
     @article_version = ArticleVersion.find(params[:id])
   end
