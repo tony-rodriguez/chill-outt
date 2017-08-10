@@ -1,13 +1,12 @@
 class ArticleVersionsController < ApplicationController
-  before_action :set_article_version, only: [:edit, :update]
+  before_action :set_version, only: [:edit, :update]
 
   def new
     @article_version = ArticleVersion.new
   end
 
   def create
-    @article_version = ArticleVersion.new(article_version_params)
-
+    @article_version = ArticleVersion.new(version_params)
   end
 
   def edit #for drafts?
@@ -25,6 +24,6 @@ class ArticleVersionsController < ApplicationController
   end
 
   def version_params
-    params.require(:article_verison).permit(:content, :author, :article)
+    params.require(:article_version).permit(:content, :author, :article)
   end
 end

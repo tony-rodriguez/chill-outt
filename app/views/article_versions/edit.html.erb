@@ -1,6 +1,6 @@
 <h1>Edit Draft</h1>
 
-<%= form_with id: "new-article", model: @ , local: true do |form| %>
+<%= form_with id: "new-article", model: @article, local: true do |form| %>
   <p>
     <%= form.label :title, "Enter the title of your article" %>
     <%= form.text_field :title %>
