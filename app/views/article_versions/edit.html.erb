@@ -1,15 +1,25 @@
-<h1>Edit Draft</h1>
+<h1>Edit Article</h1>
 
-<%= form_with id: "new-article", model: @article, local: true do |form| %>
+<%= form_with id: "edit-article-version", url: article_version_url(@article_version.article, @article_version), method: "patch", local: true do |form| %>
+  <% if @article_version.errors.any? %>
+    <p>
+      <%= pluralize(@article_version.errors.count, "error") %> prohibited this article_version from being saved.
+    </p>
+    <ul>
+      <% @article_version.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
   <p>
-    <%= form.label :title, "Enter the title of your article" %>
-    <%= form.text_field :title %>
+    <%= @article_version.article.title %>
   </p>
 
-  <%= form.fields_for :versions do |field| %>
+  <%= form.fields_for :article_version do |field| %>
     <p>
       <%= field.label :content, "Enter the content of your article" %>
-      <%= field.cktext_area :content %>
+      <%= field.cktext_area :content, value: @article_version.content %>
     </p>
   <% end %>
 
