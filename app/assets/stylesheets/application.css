@@ -27,3 +27,7 @@ main {
 .version-content {
   font-style: italic;
 }
+
+form label {
+  display: block;
+}
