@@ -5,7 +5,6 @@ Article.delete_all
 ArticleVersion.delete_all
 UserType.delete_all
 
-UserType.create!(name: "master")
 UserType.create!(name: "admin")
 UserType.create!(name: "contributor")
 
