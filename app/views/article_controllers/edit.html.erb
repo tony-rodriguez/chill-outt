@@ -1,0 +1,17 @@
+<h1>Edit Draft</h1>
+
+<%= form_with id: "new-article", model: @ , local: true do |form| %>
+  <p>
+    <%= form.label :title, "Enter the title of your article" %>
+    <%= form.text_field :title %>
+  </p>
+
+  <%= form.fields_for :versions do |field| %>
+    <p>
+      <%= field.label :content, "Enter the content of your article" %>
+      <%= field.cktext_area :content %>
+    </p>
+  <% end %>
+
+  <%= form.submit %>
+<% end %>
