@@ -8,6 +8,6 @@ module ApplicationHelper
   end
 
   def authenticate!
-    redirect '/users/new' unless logged_in?
+    redirect_to new_user_path unless logged_in?
   end
 end
