@@ -7,6 +7,7 @@
     <%= @article.versions.each do |version| %>
       <p class="version-content">
         <%= version.content %>
+        <small>-Written by: <%= version.author.username %> on <%= version.</small>
       </p>
     <% end %>
 </div>

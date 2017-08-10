@@ -12,13 +12,19 @@
 <% end %>
 
 <%= form_with model: @article, local: true do |form| %>
-  <label>Enter the title of your article</label>
-  <%= form.text_field :title %><br/>
+  <table>
+    <tr>
+      <td>Enter the title of your article</td>
+      <td><%= form.text_field :title %></td>
+    </tr>
 
-  <label>Enter the content of your article</label>
-  <%= form.fields_for :versions do |fields| %>
-    <%= fields.text_field :content %>
-  <% end %>
-  <br>
+    <%= form.fields_for :versions do |fields| %>
+      <tr>
+        <td>Enter the content of your article</td>
+        <td><%= fields.text_area :content %></td>
+      </tr>
+    <% end %>
+  </table>
+
   <%= form.submit %>
 <% end %>
