@@ -11,7 +11,8 @@ class ArticlesController < ApplicationController
     @article.versions.first.author = current_user
 
     if @article.save
-      redirect_to @article
+      p @article
+      redirect_to article_version_path(@article, @article.latest_version)
     else
       render 'new'
     end
@@ -19,6 +20,7 @@ class ArticlesController < ApplicationController
 
   def show
     @article = Article.find(params[:id])
+    redirect_to article_version_path(@article.latest_version)
   end
 
   # def edit

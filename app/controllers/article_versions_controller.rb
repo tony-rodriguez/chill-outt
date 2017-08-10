@@ -1,6 +1,11 @@
 class ArticleVersionsController < ApplicationController
   before_action :set_version, only: [:edit, :update]
 
+  def show
+    @article = Article.find(params[:article_id])
+    @shown_version = @article.versions.find(params[:id])
+  end
+
   def create
     @article = Article.find(params[:article_id])
     @article_version = ArticleVersion.new(article: @article, author: current_user, content: @article.latest_version.content)
