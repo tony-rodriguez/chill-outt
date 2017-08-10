@@ -5,9 +5,9 @@ Article.delete_all
 ArticleVersion.delete_all
 UserType.delete_all
 
-UserType.create!(name: "Master")
-UserType.create!(name: "Admin")
-UserType.create!(name: "User")
+UserType.create!(name: "master")
+UserType.create!(name: "admin")
+UserType.create!(name: "contributor")
 
 
 users_desired = rand(15..25)
@@ -18,13 +18,13 @@ users_needed.times do
   user = User.new(
     username: "#{Faker::Name.first_name}.#{Faker::Name.last_name}".downcase,
     password: "password",
-    type: UserType.find(rand(2..3))
+    type: UserType.find_by(name: "contributor")
     )
 
   user.save(validate: false)
 end
 
-User.create!(username: "greme.awesome", password: "password", type_id: 1)
+User.create!(username: "greme.awesome", password: "password", type: UserType.find_by(name: "master"))
 
 articles_desired = rand(8..10)
 articles_entered = Article.count
@@ -37,19 +37,20 @@ articles_needed.times do
     )
 
   article.save(validate: false)
-end
 
-versions_desired = rand(25..35)
-versions_entered = ArticleVersion.count
-versions_needed = versions_desired - versions_entered
+  versions_desired = rand(3..5)
+  versions_entered = ArticleVersion.count
+  versions_needed = versions_desired - versions_entered
 
-versions_needed.times do
-  article_version = ArticleVersion.new(
-    content: Faker::Hipster.paragraph(rand(1..3)),
-    article_id: rand(articles_desired)
-    author_id: rand(users_desired),
-    is_draft: rand(0..1)
-    )
+  versions_needed.times do
+    article_version = ArticleVersion.new(
+      content: Faker::Hipster.paragraph(rand(1..3)),
+      article: article,
+      author: User.all.sample,
+      is_draft: rand(0..1)
+      )
 
-  article_version.save(validate: false)
+    article_version.save(validate: false)
+  end
+
 end
