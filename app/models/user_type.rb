@@ -4,4 +4,5 @@ class UserType < ApplicationRecord
   def self.anything_but_admin
     self.all.select {|type| type unless type.name.downcase == "admin" }.first
   end
+
 end

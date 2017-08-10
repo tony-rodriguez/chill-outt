@@ -1,13 +1,14 @@
 <h2><%= @article.title %></h2>
 
-<label>Versions</label>
+<h3>Versions</h3>
 
 <div class="version-container">
-  <p class="version-content">
-    <%= @article.versions.each do |version| %>
+
+    <% @article.versions.each do |version| %>
       <p class="version-content">
-        <%= version.content %>
-        <small>-Written by: <%= version.author.username %> on <%= version.</small>
+        <%= version.content %><br />
+        <small>-Written by: <%= version.author.username %> on <%= version.created_at %></small>
       </p>
     <% end %>
+
 </div>

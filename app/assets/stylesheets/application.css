@@ -1,5 +1,6 @@
 body {
   background-color: rgba(0, 0, 0, 0.25);
+  font-family: sans-serif;
 }
 
 main {
@@ -9,6 +10,10 @@ main {
   border-radius: 5px;
 }
 
+.page-title {
+  font-family: Georgia;
+  font-style: italic;
+}
 
 .container {
   width: 760px;
