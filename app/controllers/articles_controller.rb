@@ -1,5 +1,9 @@
 class ArticlesController < ApplicationController
-  # before_action :set_article, only: [:edit, :update]
+  before_action :get_article, only: [:show, :edit, :update]
+
+  def show
+    redirect_to article_version_path(@article, @article.latest_version)
+  end
 
   def new
     @article = Article.new
@@ -8,17 +12,13 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
-    @article.versions.first.author_id = 1 # current_user eventually
+    @article.versions.first.author = current_user
 
     if @article.save
-      redirect_to @article
+      redirect_to article_version_path(@article, @article.latest_version)
     else
       render 'new'
     end
-  end
-
-  def show
-    @article = Article.find(params[:id])
   end
 
   private
@@ -26,8 +26,7 @@ class ArticlesController < ApplicationController
     params.require(:article).permit(:title, versions_attributes: [:content])
   end
 
-  def set_article
+  def get_article
     @article = Article.find(params[:id])
   end
-
 end

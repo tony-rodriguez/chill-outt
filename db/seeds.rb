@@ -8,7 +8,6 @@ UserType.delete_all
 UserType.create!(name: "admin")
 UserType.create!(name: "contributor")
 
-
 users_desired = rand(15..25)
 users_entered = User.count
 users_needed = users_desired - users_entered
@@ -23,16 +22,14 @@ users_needed.times do
   user.save(validate: false)
 end
 
-User.create!(username: "greme.awesome", password: "password", type: UserType.find_by(name: "master"))
-
 articles_desired = rand(8..10)
 articles_entered = Article.count
 articles_needed = articles_desired - articles_entered
 
 articles_needed.times do
   article = Article.new(
-    title: Faker::Hipster.sentence(rand(5..10)),
     is_featured: (rand(0..1))
+    title: Faker::Hipster.sentence(rand(5..10)),
     )
 
   article.save(validate: false)

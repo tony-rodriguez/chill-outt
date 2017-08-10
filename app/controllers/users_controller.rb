@@ -9,9 +9,9 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params.merge(type: UserType.anything_but_admin))
+    @user = User.new(user_params.merge(type: UserType.find_or_create_by(name: "contributor")))
     if @user.save
-      session[:user_id] == @user.id
+      session[:user_id] = @user.id
       redirect_to @user
     else
       render 'new'

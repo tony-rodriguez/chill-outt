@@ -37,18 +37,18 @@ RSpec.describe ArticlesController, :type => :controller do
 
   describe 'GET #show' do
 
-    it 'responds successfully with an HTTP 200 status code' do
+    xit 'responds successfully with an HTTP 200 status code' do
       get :show, params: {id: @first_article.id}
       expect(response).to be_success
       expect(response).to have_http_status(200)
     end
 
-    it 'assigns a article to @article' do
+    xit 'assigns a article to @article' do
       get :show, params: {id: @first_article.id}
       expect(assigns(:article)).to be_a Article
     end
 
-    it 'renders the new template' do
+    xit 'renders the new template' do
       get :show, params: {id: @first_article.id}
       expect(response).to render_template("show")
     end
