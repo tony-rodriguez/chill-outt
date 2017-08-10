@@ -1,0 +1,30 @@
+<h1>New Article</h1>
+
+<% if @article.errors.any? %>
+  <p>
+    <%= pluralize(@article.errors.count, "error") %> prohibited this article from being saved.
+  </p>
+  <ul>
+    <% @article.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_with model: @article, local: true do |form| %>
+  <table>
+    <tr>
+      <td>Enter the title of your article</td>
+      <td><%= form.text_field :title %></td>
+    </tr>
+
+    <%= form.fields_for :versions do |fields| %>
+      <tr>
+        <td>Enter the content of your article</td>
+        <td><%= fields.text_area :content %></td>
+      </tr>
+    <% end %>
+  </table>
+
+  <%= form.submit %>
+<% end %>

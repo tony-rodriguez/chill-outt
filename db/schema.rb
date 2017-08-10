@@ -19,9 +19,9 @@ ActiveRecord::Schema.define(version: 20170809200726) do
     t.string "content", null: false
     t.integer "article_id"
     t.integer "author_id"
-    t.boolean "is_draft"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "is_draft"
   end
 
   create_table "articles", force: :cascade do |t|
@@ -41,9 +41,9 @@ ActiveRecord::Schema.define(version: 20170809200726) do
   create_table "users", force: :cascade do |t|
     t.string "username", null: false
     t.string "password_digest", null: false
-    t.integer "type_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "type_id", null: false
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
