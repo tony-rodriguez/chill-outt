@@ -8,7 +8,7 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
-    @article.versions.first.author_id = 1 # current_user eventually
+    @article.versions.first.author = current_user
 
     if @article.save
       redirect_to @article
