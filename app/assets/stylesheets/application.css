@@ -28,6 +28,10 @@ main {
   font-style: italic;
 }
 
+form label {
+  display: block;
+}
+
 .shown-version {
   color: blue;
 }

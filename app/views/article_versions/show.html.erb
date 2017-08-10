@@ -2,11 +2,12 @@
 
 <article class="article-content">
   <p>
-    <%= @shown_version.content %>
+    <%= @shown_version.content.html_safe %>
   </p>
   <small>-Written by: <%= @shown_version.author.username %> on <%=  @shown_version.created_at.strftime('%c') %></small>
 </article>
 
+<p><%= link_to "Contribute to this article", article_versions_path(@article), method: "post" %>
 
 <div class="version-container">
   <h5>Time Machine:</h5>
