@@ -35,7 +35,7 @@ articles_needed.times do
   article.save(validate: false)
 
   versions_desired = rand(3..5)
-  versions_entered = versions.count
+  versions_entered = article.versions.count
   versions_needed = versions_desired - versions_entered
 
   versions_needed.times do
