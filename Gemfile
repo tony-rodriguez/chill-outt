@@ -29,6 +29,9 @@ gem 'bcrypt', '~> 3.1.7'
 # CKEditor for web content creation integration
 gem 'ckeditor'
 
+# Faker in all environments for demo purposes ONLY
+gem 'faker'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -37,7 +40,6 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails', '~> 3.5'
   gem 'rails-controller-testing'
-  gem 'faker'
 end
 
 group :development do
