@@ -14,4 +14,8 @@ module ApplicationHelper
   def user_is_admin?
     current_user.is_admin? if logged_in?
   end
+
+  def authorized?(user)
+    current_user.is_admin? || current_user == user
+  end
 end
