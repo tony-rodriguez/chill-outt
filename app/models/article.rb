@@ -17,6 +17,6 @@ class Article < ApplicationRecord
   end
 
   def self.search(param)
-    Article.select { |article| article.title.downcase.include? param.downcase}
+    Article.select { |article| article.latest_version.title.downcase.include? param.downcase}
   end
 end

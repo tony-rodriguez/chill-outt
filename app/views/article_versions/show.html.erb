@@ -1,4 +1,4 @@
-<h2><%= @article.title %></h2>
+<h2><%= @shown_version.title %></h2>
 
 <article class="article-content">
   <p>
@@ -14,9 +14,9 @@
   <ul>
     <% @article.versions.each do |version| %>
       <% if version == @shown_version %>
-        <li class="shown-version"><small>Version by: <%= version.author.username %> written on <%= version.created_at.strftime('%c')  %></small></li>
+        <li class="shown-version"><small><i><%= version.title %></i> by: <%= version.author.username %> written on <%= version.created_at.strftime('%c') %></small></li>
       <% else %>
-       <li class="version-links"><small><%= link_to "Version by #{version.author.username} written on #{version.created_at.strftime('%c')}", article_version_path(@article, version) %></small></li>
+       <li class="version-links"><small><i><%= link_to "#{version.title}", article_version_path(@article, version) %></i> by: <%= version.author.username %> written on <%= version.created_at.strftime('%c') %></small></li>
       <% end %>
     <% end %>
   </ul>
