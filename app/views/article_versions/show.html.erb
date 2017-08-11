@@ -21,7 +21,7 @@
   <p>
     <%= @article_version.content.html_safe %>
   </p>
-  <small>-Written by: <%= @article_version.author.username %> on <%=  @article_version.updated_at.strftime('%c') %></small>
+  <small>-Written by: <%= link_to "#{@article_version.author.username}", @article_version.author, class: "username-link"%> on <%=  @article_version.updated_at.strftime('%c') %></small>
 </article>
 
 <p><%= link_to "Contribute to this article", article_versions_path(@article), method: 'post' %>
