@@ -1,8 +1,18 @@
 class ArticlesController < ApplicationController
   before_action :get_article, only: [:show, :edit, :update]
 
+  def index
+    @featured_articles = Article.featured
+  end
+
   def show
     redirect_to article_version_path(@article, @article.latest_version)
+  end
+
+  def search
+    @search_param = params[:q]
+    @search_results = Article.search(@search_param)
+    render :search
   end
 
   def new
