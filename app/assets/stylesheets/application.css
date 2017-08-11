@@ -1,6 +1,6 @@
 body {
   background-color: #1DA1F7;
-  font-family: sans-serif;
+  font-family: Ubuntu;
 }
 
 main {
@@ -14,7 +14,6 @@ main {
   position: relative;
   display: inline-block;
   width: 49%;
-  font-family: Georgia;
   font-style: italic;
 }
 
@@ -31,7 +30,6 @@ main {
 
 #main-menu a {
   text-decoration: none;
-  font-family: Georgia;
   color: purple;
   font-size: 1.2em;
 }
@@ -73,11 +71,18 @@ form label {
 
 .featured-articles {
   margin-top: 65px;
-  text-align: center;
+  text-align: left;
 }
 
 .featured-article {
-  margin-bottom: 15px;
+  margin-bottom: 25px;
+  border-bottom: 2px solid #446789;
+  padding-bottom: 15px;
+}
+
+.title-link {
+  font-style: italic;
+  font-size: 1.5em;
 }
 
 .search-box {
