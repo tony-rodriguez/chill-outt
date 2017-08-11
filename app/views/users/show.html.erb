@@ -1,1 +1,10 @@
 <h1><%= @user.username %></h1>
+
+<h3>Saved Drafts</h3>
+
+<div id="draft-list">
+  <%= @user.saved_version_drafts.each do |version| %>
+    <h4><%= link_to edit_article_version(version.article, version), "#{version.title}" %></h4>
+    <small><%=  version.created_at.strftime('%c') %></small>
+  <% end %>
+</div>

@@ -1,4 +1,5 @@
 class ArticlesController < ApplicationController
+  before_action :authenticate!, only: [:new, :create]
   before_action :get_article, only: [:show, :edit, :update]
 
   def index
