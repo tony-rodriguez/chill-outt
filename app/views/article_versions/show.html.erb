@@ -36,10 +36,10 @@
   <ul>
     <% @article.ordered_saved_versions.each do |version| %>
       <% if version == @article_version %>
-        <li class="shown-version"><small><i><%= version.title %></i> by: <%= version.author.username %> written on <%= version.created_at.strftime('%c') %></small></li>
+        <li class="shown-version"><small><i><%= version.title %></i> by: <%= link_to "#{version.author.username}", version.author, class: "username-link"%> written on <%= version.created_at.strftime('%c') %></small></li>
 
       <% else %>
-       <li class="version-links"><small><i><%= link_to "#{version.title}", article_version_path(@article, version) %></i> by: <%= version.author.username %> written on <%= version.created_at.strftime('%c') %></small></li>
+       <li class="version-links"><small><i><%= link_to "#{version.title}", article_version_path(@article, version) %></i> by: <%= link_to "#{version.author.username}", version.author, class: "username-link" %> written on <%= version.created_at.strftime('%c') %></small></li>
       <% end %>
     <% end %>
   </ul>
