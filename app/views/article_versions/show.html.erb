@@ -7,7 +7,7 @@
   <small>-Written by: <%= @shown_version.author.username %> on <%=  @shown_version.created_at.strftime('%c') %></small>
 </article>
 
-<p><%= link_to "Contribute to this article", article_versions_path(@article), method: "post" %>
+<p><%= link_to "Contribute to this article", edit_article_version_path(@article, @shown_version) %>
 
 <div class="version-container">
   <h5>Time Machine:</h5>

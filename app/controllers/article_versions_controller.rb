@@ -33,6 +33,6 @@ class ArticleVersionsController < ApplicationController
   end
 
   def version_params
-    params.require(:article_version).permit(:content)
+    params.require(:article_version).permit(:content, :title)
   end
 end
