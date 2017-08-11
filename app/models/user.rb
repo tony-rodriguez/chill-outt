@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   has_many :article_versions, foreign_key: :author_id
   belongs_to :type, class_name: "UserType"
-
+  has_many :contributed_articles, through: :article_versions, source: :article
   has_secure_password
 
   validates_presence_of :username

@@ -8,6 +8,10 @@ class Article < ApplicationRecord
     versions.order("updated_at").last
   end
 
+  def latest_saved_version
+    versions.order("updated_at").select { |version| !version.is_draft }.last
+  end
+
   def first_version
     versions.order("created_at").first
   end
@@ -21,10 +25,18 @@ class Article < ApplicationRecord
   end
 
   def self.featured
-    Article.where(is_featured: true).order(updated_at: :desc)
+    self.where(is_featured: true).order(updated_at: :desc)
   end
 
-  def self.search(param)
-    Article.select { |article| article.latest_version.title.downcase.include? param.downcase}
+  def self.search(param, articles = self.all)
+    articles.select { |article| article.latest_version.title.downcase.include? param.downcase}
+  end
+
+  def self.with_a_saved_version
+    self.select { |article| article.latest_saved_version }
+  end
+
+  def self.search_saved_versions(param)
+    self.search(param, self.with_a_saved_version)
   end
 end
