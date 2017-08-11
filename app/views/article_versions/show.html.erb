@@ -5,7 +5,7 @@
     <h4><em>Featured Article</em></h4>
   <% else %>
 
-    <% if current_user.is_admin? %>
+    <% if user_is_admin? %>
       <%= form_tag @article, method: "patch" do %>
         <%= hidden_field_tag :"article[is_featured]", true %>
         <%= submit_tag "Feature this article" %>
