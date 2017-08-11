@@ -5,9 +5,9 @@ Rails.application.routes.draw do
     resources :article_versions, path: :versions, only: [:show, :new, :create, :edit, :update], as: :versions
   end
 
-  resources :sessions, only: [:new, :create, :destroy]
+  resources :sessions, only: [:new, :create]
   resources :users, except: [:index, :edit, :update]
 
   get 'search' => 'articles#search'
-
+  delete 'sessions', to: 'sessions#destroy', as: 'logout'
 end

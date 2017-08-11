@@ -11,6 +11,16 @@
   <body>
     <main class="container">
       <h1 class="page-title">Chill Outt. . .</h1>
+      <nav id="main-menu">
+        <div id="nav-container">
+          <% if logged_in? %>
+            <span><%= link_to "#{current_user.username}", current_user %> | <%= link_to "logout", logout_path, method: :delete %></span>
+          <% else %>
+            <span><%= link_to "login", new_session_path %> | <%= link_to "register", new_user_path %></span>
+          <% end %>
+            <span> | <%= link_to "home", root_path %></span>
+        </div>
+      </nav>
       <%= yield %>
     </main>
   </body>
