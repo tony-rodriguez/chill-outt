@@ -26,6 +26,7 @@ class ArticlesController < ApplicationController
     @article.versions.first.author = current_user
 
     if @article.save
+      current_user.promote_to_admin_if_ready
       redirect_to article_version_path(@article, @article.latest_version)
     else
       render 'new'
