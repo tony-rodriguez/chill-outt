@@ -13,12 +13,13 @@
   <h2>Featured Articles</h2>
   <% if @featured_articles.any? %>
     <% @featured_articles.each do |article| %>
-      <div class="version-links featured-article"><i><%= link_to "#{article.latest_version.title}", article_version_path(article, article.latest_version) %></i> by: <%= article.latest_version.author.username %> written on <%= article.latest_version.updated_at.strftime('%c') %></div>
+      <div class="version-links featured-article"><i><%= link_to "#{article.latest_version.title}", article_version_path(article, article.latest_version) %></i> by: <%= article.latest_version.author.username %> written on <%= article.latest_version.updated_at.strftime('%c') %>
       <% if user_is_admin? %>
       <%= form_tag article, method: "patch" do %>
         <%= hidden_field_tag :"article[is_featured]", false %>
         <%= submit_tag "Unfeature this article" %>
       <% end %>
+      </div>
     <% end %>
     <% end %>
   <% end %>
