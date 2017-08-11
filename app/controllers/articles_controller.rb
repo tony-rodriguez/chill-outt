@@ -20,11 +20,6 @@ class ArticlesController < ApplicationController
     @article.versions.build
   end
 
-  def show
-    @article = Article.find(params[:id])
-    redirect_to article_version_path(@article, @article.latest_version)
-  end
-
   def create
     @article = Article.new(article_params)
     @article.versions.first.author = current_user
