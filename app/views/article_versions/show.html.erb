@@ -1,4 +1,4 @@
-<h2><%= @article.title %></h2>
+<h2><%= @article_version.title %></h2>
 
 <div id="featured-article">
   <% if @article.is_featured %>
@@ -22,22 +22,22 @@
   <small>-Written by: <%= @article_version.author.username %> on <%=  @article_version.updated_at.strftime('%c') %></small>
 </article>
 
+<p><%= link_to "Contribute to this article", article_versions_path(@article), method: 'post' %>
 <% if @error_message %>
   <ul>
     <li><%= @error_message %></li>
   </ul>
 <% end %>
 
-<p><%= link_to "Contribute to this article", article_versions_path(@article), method: "post" %>
-
 <div class="version-container">
   <h5>Time Machine:</h5>
   <ul>
-    <% @article.saved_versions.each do |version| %>
+    <% @article.ordered_saved_versions.each do |version| %>
       <% if version == @article_version %>
-        <li class="shown-version"><small>Version by: <%= version.author.username %> written on <%= version.created_at.strftime('%c')  %></small></li>
+        <li class="shown-version"><small><i><%= version.title %></i> by: <%= version.author.username %> written on <%= version.created_at.strftime('%c') %></small></li>
+
       <% else %>
-       <li class="version-links"><small><%= link_to "Version by #{version.author.username} written on #{version.created_at.strftime('%c')}", article_version_path(@article, version) %></small></li>
+       <li class="version-links"><small><i><%= link_to "#{version.title}", article_version_path(@article, version) %></i> by: <%= version.author.username %> written on <%= version.created_at.strftime('%c') %></small></li>
       <% end %>
     <% end %>
   </ul>

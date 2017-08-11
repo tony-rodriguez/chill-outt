@@ -9,7 +9,8 @@ class ArticleVersionsController < ApplicationController
   def create
     @article_version = ArticleVersion.new(article: @article,
                                           author: current_user,
-                                          content: @article.latest_version.content
+                                          content: @article.latest_version.content,
+                                          title: @article.latest_version.title
                                           )
     if authorized?(@article.first_version.author) && @article_version.save
       redirect_to edit_article_version_path(@article_version.article, @article_version)
@@ -41,6 +42,6 @@ class ArticleVersionsController < ApplicationController
   end
 
   def version_params
-    params.require(:article_version).permit(:content, :is_draft)
+    params.require(:article_version).permit(:content, :is_draft, :title)
   end
 end

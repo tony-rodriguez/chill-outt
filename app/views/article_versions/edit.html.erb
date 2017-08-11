@@ -12,12 +12,10 @@
     </ul>
   <% end %>
 
-  <p>
-    <%= @article_version.article.title %>
-  </p>
-
   <%= form.fields_for :article_version do |field| %>
     <p>
+      <%= field.label :title, "Enter the title of your article" %>
+      <%= field.text_area :title, value: @article_version.title %>
       <%= field.label :content, "Enter the content of your article" %>
       <%= field.cktext_area :content, value: @article_version.content %>
     </p>

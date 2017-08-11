@@ -12,13 +12,11 @@
 <% end %>
 
 <%= form_with id: "new-article", model: @article, local: true do |form| %>
-  <p>
-    <%= form.label :title, "Enter the title of your article" %>
-    <%= form.text_field :title %>
-  </p>
 
   <%= form.fields_for :versions do |field| %>
     <p>
+      <%= field.label :title, "Enter the title of your article" %>
+      <%= field.text_field :title %>
       <%= field.label :content, "Enter the content of your article" %>
       <%= field.cktext_area :content %>
     </p>

@@ -4,8 +4,8 @@ RSpec.describe ArticleVersionsController, :type => :controller do
 
   before(:each) do
     @user = User.create(username: "martha.beans", password: "password", type: UserType.anything_but_admin)
-    @first_article = Article.new(title: "Beans are great")
-    @first_article.versions << ArticleVersion.new(content: "See Title", author: @user)
+    @first_article = Article.new
+    @first_article.versions << ArticleVersion.new(content: "See Title", author: @user, title: "Beans are great")
     @first_article.save
   end
 
