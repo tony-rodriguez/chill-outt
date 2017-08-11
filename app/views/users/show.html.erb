@@ -5,6 +5,6 @@
 <div id="draft-list">
   <% @user.saved_version_drafts.each do |version| %>
     <p><%= link_to "#{version.article.title}", edit_article_version_path(version.article, version) %></p>
-    <small>Last saved: <%=  version.created_at.strftime('%c') %></small>
+    <small>Last saved: <%=  version.updated_at.strftime('%c') %></small>
   <% end %>
 </div>
