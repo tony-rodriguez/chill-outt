@@ -35,7 +35,7 @@ class ArticlesController < ApplicationController
 
   def update
     if @article.update(article_params)
-      redirect_to @article
+      redirect_back(fallback_location: root_path)
     else
       redirect_to @article
     end
