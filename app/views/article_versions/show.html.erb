@@ -4,7 +4,7 @@
   <p>
     <%= @shown_version.content.html_safe %>
   </p>
-  <small>-Written by: <%= @shown_version.author.username %> on <%=  @shown_version.created_at.strftime('%c') %></small>
+  <small>-Written by: <%= @shown_version.author.username %> on <%=  @shown_version.updated_at.strftime('%c') %></small>
 </article>
 
 <p><%= link_to "Contribute to this article", article_versions_path(@article), method: "post" %>
