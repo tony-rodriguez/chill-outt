@@ -34,7 +34,7 @@ class ArticlesController < ApplicationController
 
   private
   def article_params
-    params.require(:article).permit(:title, versions_attributes: [:content])
+    params.require(:article).permit(:title, versions_attributes: [:content, :is_draft])
   end
 
   def get_article

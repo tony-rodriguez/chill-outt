@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :authenticate!, only: [:show]
   before_action :get_user, only: [:show]
 
   def show
@@ -23,7 +24,6 @@ class UsersController < ApplicationController
     end
 
     def get_user
-      authenticate!
       @user = current_user
     end
 end

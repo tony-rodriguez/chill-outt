@@ -3,8 +3,8 @@
 <h3>Saved Drafts</h3>
 
 <div id="draft-list">
-  <%= @user.saved_version_drafts.each do |version| %>
-    <h4><%= link_to edit_article_version(version.article, version), "#{version.title}" %></h4>
-    <small><%=  version.created_at.strftime('%c') %></small>
+  <% @user.saved_version_drafts.each do |version| %>
+    <p><%= link_to "#{version.article.title}", edit_article_version_path(version.article, version) %></p>
+    <small>Last saved: <%=  version.created_at.strftime('%c') %></small>
   <% end %>
 </div>

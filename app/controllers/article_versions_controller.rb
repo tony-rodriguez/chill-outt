@@ -1,4 +1,5 @@
 class ArticleVersionsController < ApplicationController
+  before_action :authenticate!, only: [:create, :update]
   before_action :get_version, only: [:edit, :update]
 
   def show
