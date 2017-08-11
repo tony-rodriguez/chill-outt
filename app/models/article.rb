@@ -21,7 +21,7 @@ class Article < ApplicationRecord
   end
 
   def self.featured
-    Article.where(is_featured: true)
+    Article.where(is_featured: true).order(updated_at: :desc)
   end
 
   def self.search(param)

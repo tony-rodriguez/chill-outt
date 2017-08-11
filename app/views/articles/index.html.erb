@@ -7,6 +7,10 @@
   <%= submit_tag("Search") %>
 <% end %>
 <div class="featured-articles">
-
-
+  <h2>Featured Articles</h2>
+  <% if @featured_articles.any? %>
+    <% @featured_articles.each do |article| %>
+      <div class="version-links featured-article"><i><%= link_to "#{article.latest_version.title}", article_version_path(article, article.latest_version) %></i> by: <%= article.latest_version.author.username %> written on <%= article.latest_version.updated_at.strftime('%c') %></div>
+    <% end %>
+  <% end %>
 </div>

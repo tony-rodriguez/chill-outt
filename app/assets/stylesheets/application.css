@@ -45,3 +45,11 @@ form label {
   color: #6eb5b7;
   text-decoration: none;
 }
+
+.featured-articles {
+  text-align: center;
+}
+
+.featured-article {
+  margin-bottom: 15px;
+}
