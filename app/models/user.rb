@@ -21,4 +21,8 @@ class User < ApplicationRecord
       self.save
     end
   end
+
+  def is_admin?
+    type.name.downcase == "admin"
+  end
 end

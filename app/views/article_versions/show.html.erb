@@ -1,5 +1,20 @@
 <h2><%= @article.title %></h2>
 
+<div id="featured-article">
+  <% if @article.is_featured %>
+    <h4><em>Featured Article</em></h4>
+  <% else %>
+
+    <% if current_user.is_admin? %>
+      <%= form_tag @article, method: "patch" do %>
+        <%= hidden_field_tag :"article[is_featured]", true %>
+        <%= submit_tag "Feature this article" %>
+      <% end %>
+    <% end %>
+
+  <% end %>
+</div>
+
 <article class="article-content">
   <p>
     <%= @shown_version.content.html_safe %>
