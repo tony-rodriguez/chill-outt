@@ -56,11 +56,17 @@ form label {
 }
 
 .shown-version {
-  color: blue;
+  color: #064b7a;
+  font-size: 1.2em;
 }
 
 .version-links a {
   color: black;
+  text-decoration: none;
+}
+
+.version-links .username-link {
+  color: purple;
   text-decoration: none;
 }
 
@@ -107,4 +113,9 @@ form label {
 
 .user-title {
   text-align: center;
+}
+
+.username-link {
+  color: purple;
+  text-decoration: none;
 }
