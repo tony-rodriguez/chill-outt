@@ -12,7 +12,7 @@
 <div class="version-container">
   <h5>Time Machine:</h5>
   <ul>
-    <% @article.versions.each do |version| %>
+    <% @article.saved_versions.each do |version| %>
       <% if version == @shown_version %>
         <li class="shown-version"><small>Version by: <%= version.author.username %> written on <%= version.created_at.strftime('%c')  %></small></li>
       <% else %>

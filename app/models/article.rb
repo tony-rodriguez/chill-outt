@@ -19,4 +19,8 @@ class Article < ApplicationRecord
   def self.search(param)
     Article.select { |article| article.title.downcase.include? param.downcase}
   end
+
+  def saved_versions
+    versions.select {|version| version.is_draft != true}
+  end
 end

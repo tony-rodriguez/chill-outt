@@ -13,6 +13,8 @@ RSpec.describe ArticlesController, :type => :controller do
     @first_article = Article.new(title: "Beans are great")
     @first_article.versions << ArticleVersion.new(content: "See Title", author: @user)
 
+    session[:user_id] = @user.id
+
     @first_article.save
     @first_article.versions.last
   end
