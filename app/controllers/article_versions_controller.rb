@@ -1,5 +1,6 @@
 class ArticleVersionsController < ApplicationController
-  before_action :set_version, only: [:edit, :update]
+  before_action :authenticate!, only: [:create, :update]
+  before_action :get_version, only: [:edit, :update]
 
   def show
     @article = Article.find(params[:article_id])
@@ -28,11 +29,11 @@ class ArticleVersionsController < ApplicationController
   end
 
   private
-  def set_version
+  def get_version
     @article_version = ArticleVersion.find(params[:id])
   end
 
   def version_params
-    params.require(:article_version).permit(:content)
+    params.require(:article_version).permit(:content, :is_draft)
   end
 end

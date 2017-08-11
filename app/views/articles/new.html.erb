@@ -22,6 +22,10 @@
       <%= field.label :content, "Enter the content of your article" %>
       <%= field.cktext_area :content %>
     </p>
+    <p>
+      <%= field.label :is_draft, "Check the box to save as as a draft." %>
+      <%= field.check_box :is_draft %>
+    </p>
   <% end %>
 
   <%= form.submit %>
