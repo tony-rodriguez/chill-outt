@@ -11,7 +11,32 @@ main {
 }
 
 .page-title {
+  position: relative;
+  display: inline-block;
+  width: 49%;
   font-family: Georgia;
+  font-style: italic;
+}
+
+#main-menu {
+  position: relative;
+  display: inline-block;
+  width: 49%;
+  top: 5px;
+}
+
+#nav-container {
+  float: right;
+}
+
+#main-menu a {
+  text-decoration: none;
+  font-family: Georgia;
+  color: purple;
+  font-size: 1.2em;
+}
+
+#main-menu a:hover {
   font-style: italic;
 }
 
