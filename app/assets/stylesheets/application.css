@@ -82,7 +82,7 @@ form label {
 
 .title-link {
   font-style: italic;
-  font-size: 1.5em;
+  font-size: 1.2em;
 }
 
 .search-box {
@@ -103,4 +103,8 @@ form label {
 
 .new-article input:hover {
   color: #42b9f4;
+}
+
+.user-title {
+  text-align: center;
 }

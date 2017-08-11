@@ -28,7 +28,7 @@ class Article < ApplicationRecord
     self.where(is_featured: true).order(updated_at: :desc)
   end
 
-  def self.search(articles, param)
+  def self.search(param, articles = self.all)
     articles.select { |article| article.latest_version.title.downcase.include? param.downcase}
   end
 
@@ -37,6 +37,6 @@ class Article < ApplicationRecord
   end
 
   def self.search_saved_versions(param)
-    self.search(self.with_a_saved_version, param)
+    self.search(param, self.with_a_saved_version)
   end
 end
