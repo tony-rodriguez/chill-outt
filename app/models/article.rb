@@ -12,6 +12,10 @@ class Article < ApplicationRecord
     versions.order("created_at")[0..-2]
   end
 
+  def ordered_versions
+    versions.order(created_at: :desc)
+  end
+
   def self.featured
     Article.where(is_featured: true)
   end

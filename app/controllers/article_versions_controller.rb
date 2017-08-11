@@ -8,7 +8,7 @@ class ArticleVersionsController < ApplicationController
 
   def create
     @article = Article.find(params[:article_id])
-    @article_version = ArticleVersion.new(article: @article, author: current_user, content: @article.latest_version.content)
+    @article_version = ArticleVersion.new(article: @article, author: current_user, content: @article.latest_version.content, title: @article.latest_version.title)
     if @article_version.save
       redirect_to edit_article_version_path(@article_version.article, @article_version)
     else

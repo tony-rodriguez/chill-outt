@@ -7,12 +7,12 @@
   <small>-Written by: <%= @shown_version.author.username %> on <%=  @shown_version.created_at.strftime('%c') %></small>
 </article>
 
-<p><%= link_to "Contribute to this article", edit_article_version_path(@article, @shown_version) %>
+<p><%= link_to "Contribute to this article", article_versions_path(@article), method: 'post' %>
 
 <div class="version-container">
   <h5>Time Machine:</h5>
   <ul>
-    <% @article.versions.each do |version| %>
+    <% @article.ordered_versions.each do |version| %>
       <% if version == @shown_version %>
         <li class="shown-version"><small><i><%= version.title %></i> by: <%= version.author.username %> written on <%= version.created_at.strftime('%c') %></small></li>
       <% else %>
