@@ -8,6 +8,10 @@ class Article < ApplicationRecord
     versions.order("updated_at").last
   end
 
+  def first_version
+    versions.order("created_at").first
+  end
+
   def prior_versions
     versions.order("updated_at")[0..-2]
   end

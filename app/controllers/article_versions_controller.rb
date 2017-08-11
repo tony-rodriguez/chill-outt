@@ -1,19 +1,22 @@
 class ArticleVersionsController < ApplicationController
   before_action :authenticate!, only: [:create, :update]
-  before_action :get_version, only: [:edit, :update]
+  before_action :get_version, only: [:show, :edit, :update]
+  before_action :get_article, only: [:show, :create]
 
   def show
-    @article = Article.find(params[:article_id])
-    @shown_version = @article.versions.find(params[:id])
   end
 
   def create
-    @article = Article.find(params[:article_id])
-    @article_version = ArticleVersion.new(article: @article, author: current_user, content: @article.latest_version.content)
-    if @article_version.save
+    @article_version = ArticleVersion.new(article: @article,
+                                          author: current_user,
+                                          content: @article.latest_version.content
+                                          )
+    if authorized?(@article.first_version.author) && @article_version.save
       redirect_to edit_article_version_path(@article_version.article, @article_version)
     else
-      redirect_to @article
+      @article_version = @article.latest_version
+      @error_message = "You aren't authorized to contribute to this."
+      render 'show'
     end
   end
 
@@ -31,6 +34,10 @@ class ArticleVersionsController < ApplicationController
   private
   def get_version
     @article_version = ArticleVersion.find(params[:id])
+  end
+
+  def get_article
+    @article = Article.find(params[:article_id])
   end
 
   def version_params
