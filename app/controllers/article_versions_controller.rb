@@ -4,6 +4,8 @@ class ArticleVersionsController < ApplicationController
   before_action :get_article, only: [:show, :create]
 
   def show
+    redirect_to current_user if @article_version.is_draft && @article_version.author == current_user
+    not_found if @article_version.is_draft
   end
 
   def create

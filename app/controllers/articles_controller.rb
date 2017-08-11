@@ -7,12 +7,12 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    redirect_to article_version_path(@article, @article.latest_version)
+    redirect_to article_version_path(@article, @article.latest_saved_version)
   end
 
   def search
     @search_param = params[:q]
-    @search_results = Article.search(@search_param)
+    @search_results = Article.search_saved_versions(@search_param)
     render :search
   end
 
@@ -34,10 +34,10 @@ class ArticlesController < ApplicationController
   end
 
   def update
-    if @article.update(article_params)
+    if @article.latest_saved_version && @article.update(article_params)
       redirect_back(fallback_location: root_path)
     else
-      redirect_to @article
+      redirect_to root_path
     end
   end
 
