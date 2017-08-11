@@ -1,12 +1,12 @@
 class ArticlesController < ApplicationController
   before_action :get_article, only: [:show, :edit, :update]
 
-  def show
-    redirect_to article_version_path(@article, @article.latest_version)
-  end
-
   def index
     @featured_articles = Article.featured
+  end
+
+  def show
+    redirect_to article_version_path(@article, @article.latest_version)
   end
 
   def search
@@ -18,11 +18,6 @@ class ArticlesController < ApplicationController
   def new
     @article = Article.new
     @article.versions.build
-  end
-
-  def show
-    @article = Article.find(params[:id])
-    redirect_to article_version_path(@article, @article.latest_version)
   end
 
   def create
