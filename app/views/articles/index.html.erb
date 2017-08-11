@@ -6,6 +6,10 @@
   <%= text_field_tag(:q) %>
   <%= submit_tag("Search") %>
 <% end %>
+</div>
+<div class="new-article">
+<%= button_to "Create a New Article", new_article_path, :method => :get %>
+</div>
 <div class="featured-articles">
   <h2>Featured Articles</h2>
   <% if @featured_articles.any? %>

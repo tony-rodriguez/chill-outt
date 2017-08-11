@@ -47,9 +47,30 @@ form label {
 }
 
 .featured-articles {
+  margin-top: 65px;
   text-align: center;
 }
 
 .featured-article {
   margin-bottom: 15px;
+}
+
+.search-box {
+  text-align: center;
+  display: inline-block;
+  width: 45%
+}
+.new-article {
+  display: inline-block;
+  width: 45%;
+  text-align: right;
+}
+
+.new-article input {
+  font-size: 2em;
+  padding: 20px;
+}
+
+.new-article input:hover {
+  color: #42b9f4;
 }
