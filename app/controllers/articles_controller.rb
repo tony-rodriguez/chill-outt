@@ -1,4 +1,5 @@
 class ArticlesController < ApplicationController
+  before_action :authenticate!, only: [:new, :create, :update]
   before_action :get_article, only: [:show, :edit, :update]
 
   def index
@@ -25,15 +26,24 @@ class ArticlesController < ApplicationController
     @article.versions.first.author = current_user
 
     if @article.save
+      current_user.promote_to_admin_if_ready
       redirect_to article_version_path(@article, @article.latest_version)
     else
       render 'new'
     end
   end
 
+  def update
+    if @article.update(article_params)
+      redirect_to @article
+    else
+      redirect_to @article
+    end
+  end
+
   private
   def article_params
-    params.require(:article).permit( versions_attributes: [:title, :content])
+    params.require(:article).permit(:is_featured, versions_attributes: [:content, :is_draft, :title])
   end
 
   def get_article

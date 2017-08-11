@@ -28,7 +28,7 @@ RSpec.describe ArticleVersionsController, :type => :controller do
 
     it 'assigns a version to @shown_version' do
       get :show, params: { article_id: @first_article.id, id: @first_article.latest_version.id }
-      expect(assigns(:shown_version)).to be_a ArticleVersion
+      expect(assigns(:article_version)).to be_a ArticleVersion
     end
   end
 

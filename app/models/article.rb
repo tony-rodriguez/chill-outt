@@ -5,15 +5,19 @@ class Article < ApplicationRecord
   validates_presence_of :versions
 
   def latest_version
-    versions.order("created_at").last
+    versions.order("updated_at").last
+  end
+
+  def first_version
+    versions.order("created_at").first
   end
 
   def prior_versions
-    versions.order("created_at")[0..-2]
+    versions.order("updated_at")[0..-2]
   end
 
-  def ordered_versions
-    versions.order(created_at: :desc)
+  def ordered_saved_versions
+    versions.order(created_at: :desc).select {|version| !version.is_draft}
   end
 
   def self.featured
