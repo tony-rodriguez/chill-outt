@@ -1,0 +1,30 @@
+<h1>New Article</h1>
+
+<% if @article.errors.any? %>
+  <p>
+    <%= pluralize(@article.errors.count, "error") %> prohibited this article from being saved.
+  </p>
+  <ul>
+    <% @article.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_with id: "new-article", model: @article, local: true do |form| %>
+
+  <%= form.fields_for :versions do |field| %>
+    <p>
+      <%= field.label :title, "Enter the title of your article" %>
+      <%= field.text_field :title %>
+      <%= field.label :content, "Enter the content of your article" %>
+      <%= field.cktext_area :content %>
+    </p>
+    <p>
+      <%= field.label :is_draft, "Check the box to save as as a draft." %>
+      <%= field.check_box :is_draft %>
+    </p>
+  <% end %>
+
+  <%= form.submit %>
+<% end %>

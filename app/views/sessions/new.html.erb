@@ -1,0 +1,23 @@
+<h1>login</h1>
+
+<%= form_with(id: "login-user", url: '/sessions', local: true) do |f| %>
+  <% if @error_message %>
+    <ul>
+      <li><%= @error_message %></li>
+    </ul>
+  <% end %>
+
+  <small>Not registered? <%= link_to "Create an account.", new_user_path %></small>
+
+  <p>
+    <%= f.label :username %>
+    <%= f.text_field :username %>
+  </p>
+  <p>
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>

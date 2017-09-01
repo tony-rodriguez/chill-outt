@@ -1,0 +1,10 @@
+<h2>Search Results</h2>
+<div class='featured-articles'>
+<% if @search_results.any? %>
+    <% @search_results.each do |article| %>
+      <div class='version-links featured-article'><%= link_to "#{article.latest_saved_version.title}", article_version_path(article, article.latest_saved_version), class: "title-link" %> <br> Latest update by: <%= link_to "#{article.latest_saved_version.author.username}", article.latest_saved_version.author, class: "username-link" %> on <%= article.latest_saved_version.created_at.strftime('%c') %></div>
+    <% end %>
+<% else %>
+</div>
+  <h3>Sorry! We couldn't find any posts that match <%= @search_param %></h3>
+<% end %>

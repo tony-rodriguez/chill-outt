@@ -1,0 +1,46 @@
+<h2><%= @article_version.title %></h2>
+
+<div id="featured-article">
+  <% if @article.is_featured %>
+    <h4><em>Featured Article</em></h4>
+    <% if user_is_admin? %>
+      <%= form_tag @article, method: "patch" do %>
+        <%= hidden_field_tag :"article[is_featured]", false %>
+        <%= submit_tag "Unfeature this article" %>
+      <% end %>
+    <% end %>
+  <% elsif user_is_admin? %>
+      <%= form_tag @article, method: "patch" do %>
+        <%= hidden_field_tag :"article[is_featured]", true %>
+        <%= submit_tag "Feature this article" %>
+      <% end %>
+  <% end %>
+</div>
+
+<article class="article-content">
+  <p>
+    <%= @article_version.content.html_safe %>
+  </p>
+  <small>-Written by: <%= link_to "#{@article_version.author.username}", @article_version.author, class: "username-link"%> on <%=  @article_version.updated_at.strftime('%c') %></small>
+</article>
+
+<p><%= link_to "Contribute to this article", article_versions_path(@article), method: 'post' %>
+<% if @error_message %>
+  <ul>
+    <li><%= @error_message %></li>
+  </ul>
+<% end %>
+
+<div class="version-container">
+  <h5>Time Machine:</h5>
+  <ul>
+    <% @article.ordered_saved_versions.each do |version| %>
+      <% if version == @article_version %>
+        <li class="shown-version"><small><i><%= version.title %></i><br> by: <%= link_to "#{version.author.username}", version.author, class: "username-link"%> written on <%= version.created_at.strftime('%c') %></small></li>
+
+      <% else %>
+       <li class="version-links"><small><i><%= link_to "#{version.title}", article_version_path(@article, version) %></i><br> by: <%= link_to "#{version.author.username}", version.author, class: "username-link" %> written on <%= version.created_at.strftime('%c') %></small></li>
+      <% end %>
+    <% end %>
+  </ul>
+</div>

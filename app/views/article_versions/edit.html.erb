@@ -1,0 +1,29 @@
+<h1>Edit Article</h1>
+
+<%= form_with id: "edit-article-version", url: article_version_url(@article_version.article, @article_version), method: "patch", local: true do |form| %>
+  <% if @article_version.errors.any? %>
+    <p>
+      <%= pluralize(@article_version.errors.count, "error") %> prohibited this article_version from being saved.
+    </p>
+    <ul>
+      <% @article_version.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <%= form.fields_for :article_version do |field| %>
+    <p>
+      <%= field.label :title, "Enter the title of your article" %>
+      <%= field.text_area :title, value: @article_version.title %>
+      <%= field.label :content, "Enter the content of your article" %>
+      <%= field.cktext_area :content, value: @article_version.content %>
+    </p>
+    <p>
+      <%= field.label :is_draft, "Check the box to save as as a draft." %>
+      <%= field.check_box :is_draft %>
+    </p>
+  <% end %>
+
+  <%= form.submit %>
+<% end %>
